@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
   resource :search, only: [:create]
+  post 'ocr' => 'ocr#extract_text'
 end
