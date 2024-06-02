@@ -3,7 +3,8 @@
 title: Draft ReadMe App Entities
 ---
 erDiagram
-  User }o--o{ Book : readingList
+  User ||--o{ ReadingListItem : hasManyBooksThrough
+  Book ||--o{ ReadingListItem : hasManyUsersThrough
   Club }o--o{ User : members
   Club }o--|| Cycle : activeCycle
   Nomination ||--|| Book : has
@@ -36,5 +37,12 @@ erDiagram
   Cycle {
     UUID id
     enum phase
+  }
+
+  ReadingListItem {
+    UUID id
+    UUID book_id
+    UUID user_id
+    enum status
   }
 ```
