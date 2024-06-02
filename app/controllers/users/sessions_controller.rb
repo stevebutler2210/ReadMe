@@ -3,9 +3,18 @@
 class Users::SessionsController < Devise::SessionsController
   include RackSessionsFix
 
+  rescue_from JWT::ExpiredSignature, with: :expired_token
+
   respond_to :json
 
   private
+
+  def expired_token
+    render json: {
+      status: 401,
+      message: 'Token has expired'
+    }, status: :unauthorized
+  end
 
   def respond_with(current_user, _opts = {})
     render json: {
