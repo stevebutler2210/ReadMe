@@ -18,7 +18,7 @@ class GoogleBooksParser
         title: api_book["volumeInfo"]["title"],
         authors: api_book["volumeInfo"]["authors"],
         external_id: api_book["volumeInfo"]["industryIdentifiers"] ? api_book["volumeInfo"]["industryIdentifiers"].first["identifier"] || api_book["id"] : api_book["id"],
-        image: api_book["volumeInfo"]["imageLinks"]["thumbnail"]
+        image: api_book["volumeInfo"]["imageLinks"] && api_book["volumeInfo"]["imageLinks"]["thumbnail"]
       }
   end
 end
