@@ -27,6 +27,7 @@ erDiagram
     string external_id
     string title
     string[] authors
+    string thumbnail_url
   }
 
   Club {
