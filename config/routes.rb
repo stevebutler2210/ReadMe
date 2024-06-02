@@ -16,7 +16,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :books, only: [:create, :destroy]
+  end
+
   resource :search, only: [:create]
   post 'ocr' => 'ocr#extract_text'
 end
