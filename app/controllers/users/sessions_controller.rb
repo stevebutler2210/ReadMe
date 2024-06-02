@@ -10,6 +10,8 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def expired_token
+    puts "EXPIRED"
+
     render json: {
       status: 401,
       message: 'Token has expired'
@@ -27,6 +29,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def respond_to_on_destroy
     if request.headers['Authorization'].present?
+      puts "GOT HERE"
       jwt_payload = JWT.decode(request.headers['Authorization'].split(' ').last, Rails.application.credentials.devise_jwt_secret_key!).first
       current_user = User.find(jwt_payload['sub'])
     end
